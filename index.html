@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Rodrigo Gómez</title>
+    
+    <style>
+        /* ================= RESET Y FUENTES ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+            background-color: #dfe6e9; /* Fondo gris azulado */
+            color: #2d3436;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* ================= CONTENEDOR PRINCIPAL ================= */
+        .cv-container {
+            display: grid;
+            grid-template-columns: 320px 1fr; /* Columna izquierda fija, derecha flexible */
+            width: 100%;
+            max-width: 1100px;
+            background-color: #ffffff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        /* ================= COLUMNA IZQUIERDA ================= */
+        .left-column {
+            background: linear-gradient(180deg, #1a3b5c 0%, #0f2438 100%);
+            color: #e0e0e0;
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .profile-header {
+            text-align: center;
+        }
+
+        .profile-header h1 {
+            font-size: 2.2em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .profile-header .subtitle {
+            font-size: 0.85em;
+            color: #a8c0d8;
+            line-height: 1.4;
+        }
+
+        /* FOTO */
+        .photo-container {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .photo-container img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #4a6a8a;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            background-color: #ccc;
+        }
+
+        /* SECCIONES IZQUIERDA */
+        .left-column .section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .left-column h2 {
+            font-size: 1em;
+            text-transform: uppercase;
+            border-bottom: 2px solid #4a6a8a;
+            padding-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+        }
+
+        .contact-list, .skills-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-list li, .skills-list li {
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        .icon-box {
+            width: 28px;
+            height: 28px;
+            background-color: #2c5a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 0.9em;
+        }
+
+        .contact-list a {
+            color: #e0e0e0;
+            text-decoration: none;
+            word-break: break-all;
+            transition: color 0.2s;
+        }
+
+        .contact-list a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* ================= COLUMNA DERECHA ================= */
+        .right-column {
+            padding: 40px;
+            background-color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* TARJETAS (CARDS) */
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid #1a3b5c; /* Línea de color a la izquierda */
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            color: #1a3b5c;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .card p {
+            font-size: 0.9em;
+            text-align: justify;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        /* LÍNEA DE TIEMPO (EXPERIENCIA Y EDUCACIÓN) */
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+            padding-bottom: 20px;
+            border-left: 2px solid #e0e0e0;
+            margin-left: 8px;
+        }
+
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background-color: #1a3b5c;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 2px #1a3b5c;
+        }
+
+        .timeline-item h3 {
+            font-size: 1em;
+            color: #1a3b5c;
+            font-weight: 700;
+        }
+
+        .timeline-item .job-title {
+            font-weight: 600;
+            font-size: 0.85em;
+            color: #555;
+            font-style: italic;
+        }
+
+        .timeline-item .date {
+            font-size: 0.75em;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-item ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 0.85em;
+            color: #555;
+        }
+
+        .timeline-item ul li {
+            margin-bottom: 3px;
+        }
+
+        /* PROYECTOS */
+        .project-item {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project-item h3 {
+            font-size: 0.95em;
+            color: #1a3b5c;
+            font-weight: 700;
+        }
+
+        .project-item p {
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 3px;
+        }
+
+        /* ================= RESPONSIVE (Móviles) ================= */
+        @media (max-width: 900px) {
+            .cv-container {
+                grid-template-columns: 1fr; /* Una sola columna */
+                border-radius: 0;
+            }
+            body {
+                padding: 0;
+                background-color: #ffffff;
+            }
+            .left-column {
+                padding: 30px 20px;
+            }
+            .right-column {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cv-container">
+        <!-- ================= COLUMNA IZQUIERDA ================= -->
+        <aside class="left-column">
+            <div class="profile-header">
+                <h1>RODRIGO<br>GÓMEZ</h1>
+                <p class="subtitle">Estudiante de Ingeniería en Sistemas Computacionales</p>
+            </div>
+
+            <div class="photo-container">
+                <!-- AQUI VA TU FOTO (Asegúrate de que se llame Ro.jpeg) -->
+                <img src="Ro.jpeg" alt="Foto de perfil">
+            </div>
+
+            <div class="section">
+                <h2>Información Personal</h2>
+                <ul class="contact-list">
+                    <li><span class="icon-box">🎂</span> 07/03/2004</li>
+                    <li><span class="icon-box">📞</span> +52 449 437 5496</li>
+                    <li><span class="icon-box">✉️</span> <a href="mailto:rodrigogomezdealba@icloud.com">rodrigogomezdealba@icloud.com</a></li>
+                    <li><span class="icon-box">📍</span> Juan Pablo II Num. 1000, Aguascalientes, México</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Enlaces</h2>
+                <ul class="contact-list">
+                    <li><span class="icon-box">🌐</span> <a href="https://rodrigogomez7.github.io/CV/" target="_blank">Mi Página Web</a></li>
+                    <li><span class="icon-box">💻</span> <a href="https://github.com/RodrigoGomez7" target="_blank">github.com/RodrigoGomez7</a></li>
+                    <li><span class="icon-box">📄</span> <a href="RodrigoGomezDeAlba_CV.pdf" download>Descargar mi CV en PDF</a></li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Conocimientos Técnicos</h2>
+                <ul class="skills-list">
+                    <li><span class="icon-box">💻</span> C++, C, Java, Python, JavaScript, C#, SQL</li>
+                    <li><span class="icon-box">🌐</span> HTML, CSS, Node.js</li>
+                    <li><span class="icon-box">🗄️</span> MySQL</li>
+                    <li><span class="icon-box">⚙️</span> Git, GitHub, Docker, Docker Compose</li>
+                    <li><span class="icon-box">🖥️</span> Visual Studio, Visual Studio Code</li>
+                    <li><span class="icon-box">🐧</span> Linux y Windows</li>
+                    <li><span class="icon-box">📊</span> Apache Kafka, Apache Spark</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Idiomas</h2>
+                <ul class="contact-list">
+                    <li><span class="icon-box">🗣️</span> Español -- Nativo</li>
+                    <li><span class="icon-box">🗣️</span> Inglés -- Intermedio</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>Intereses</h2>
+                <ul class="contact-list">
+                    <li><span class="icon-box">⚽</span> Fútbol</li>
+                    <li><span class="icon-box">🎨</span> Actividades creativas y pintura</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- ================= COLUMNA DERECHA ================= -->
+        <main class="right-column">
+            
+            <!-- PERFIL -->
+            <div class="card">
+                <h2>Perfil Profesional</h2>
+                <p>Estudiante de séptimo semestre de Ingeniería en Sistemas Computacionales en la Universidad Autónoma de Aguascalientes. Cuento con conocimientos en programación, desarrollo web, bases de datos y herramientas de desarrollo.</p>
+                <p>Actualmente busco una oportunidad para realizar mis prácticas profesionales y servicio social, así como adquirir experiencia laboral y aplicar mis conocimientos en un entorno profesional. Me considero una persona responsable, con disposición para aprender, trabajar en equipo y desarrollar nuevas habilidades.</p>
+            </div>
+
+            <!-- EXPERIENCIA LABORAL -->
+            <div class="card">
+                <h2>Experiencia Laboral</h2>
+                <div class="timeline-item">
+                    <h3>Campfire Brewing</h3>
+                    <p class="job-title">Mesero</p>
+                    <span class="date">Enero 2026 -- Actualmente</span>
+                    <ul>
+                        <li>Atención y servicio al cliente.</li>
+                        <li>Toma y seguimiento de órdenes.</li>
+                        <li>Trabajo en equipo y organización del área.</li>
+                        <li>Manejo de pedidos y atención a clientes.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Patio Chilera Brewing</h3>
+                    <p class="job-title">Mesero</p>
+                    <span class="date">Agosto 2025 -- Julio 2026</span>
+                    <ul>
+                        <li>Atención y servicio a clientes.</li>
+                        <li>Toma y seguimiento de órdenes.</li>
+                        <li>Trabajo en equipo en un ambiente de atención al público.</li>
+                        <li>Organización y limpieza del área de trabajo.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- EDUCACIÓN -->
+            <div class="card">
+                <h2>Educación</h2>
+                <div class="timeline-item">
+                    <h3>Universidad Autónoma de Aguascalientes</h3>
+                    <p class="job-title">Ingeniería en Sistemas Computacionales</p>
+                    <span class="date">2023 -- Actualmente</span>
+                    <p>Séptimo semestre.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Bachillerato de la Universidad Autónoma de Aguascalientes</h3>
+                    <span class="date">2019 -- 2022</span>
+                </div>
+            </div>
+
+            <!-- PROYECTOS -->
+            <div class="card">
+                <h2>Proyectos Académicos</h2>
+                <div class="project-item">
+                    <h3>Juego de Blackjack en C++</h3>
+                    <p>Desarrollo de un juego de Blackjack como proyecto académico, aplicando programación, estructuras, memoria dinámica y archivos.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Bases de datos con MySQL</h3>
+                    <p>Creación y consulta de bases de datos utilizando SQL, incluyendo relaciones entre tablas y manipulación de información.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Desarrollo Web</h3>
+                    <p>Desarrollo de páginas web utilizando HTML, CSS y JavaScript, trabajando con estructura, diseño y funcionalidades interactivas.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Servidor con Node.js</h3>
+                    <p>Desarrollo de aplicaciones y servidores web utilizando Node.js y manejo de solicitudes HTTP.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Procesamiento de datos con Kafka y Spark</h3>
+                    <p>Proyecto académico orientado a la generación, transmisión y procesamiento de datos utilizando Apache Kafka y Apache Spark.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Contenedores con Docker</h3>
+                    <p>Configuración y ejecución de servicios mediante Docker y Docker Compose.</p>
+                </div>
+            </div>
+
+            <!-- CERTIFICACIÓN -->
+            <div class="card">
+                <h2>Certificación</h2>
+                <div class="project-item">
+                    <h3>Mendix Developer Certification -- Rapid</h3>
+                    <p>Número de certificación: <strong>109859</strong></p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
